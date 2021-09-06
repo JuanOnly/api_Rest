@@ -44,7 +44,6 @@ exports.createTeacher = (req, res, next) => {
 };
 
 exports.updateTeacher = (req, res, next) => {
-  let r = config.get("roles").teacher;
   let teacher = {
     document: req.body.document,
     name: req.body.name,
@@ -59,7 +58,7 @@ exports.updateTeacher = (req, res, next) => {
     if (err) {
       return res.status(400).json({ error: err });
     }
-    if (req.body.oldDocument != undefined) {
+    if (req.body.password != "") {
       let user = {
         name: teacher.name,
         lastname: teacher.lastname,
@@ -67,9 +66,12 @@ exports.updateTeacher = (req, res, next) => {
         password: helper.EncryptPassword(req.body.password),
         role: r,
       };
-      userDto.update({ document: req.body.oldDocument }, user, (err, u) => {
+      userDto.create(user, (err, u) => {
         if (err) {
-          return res.status(400).json({ error: err });
+          teacherDto.delete({ _id: data._id }, (err, data) => {
+            console.log("Deleting due to no user creation");
+            return res.status(400).json({ error: err });
+          });
         }
       });
       notHelper.sendMS(teacher.phone);

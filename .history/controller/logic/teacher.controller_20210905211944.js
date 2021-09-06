@@ -44,7 +44,6 @@ exports.createTeacher = (req, res, next) => {
 };
 
 exports.updateTeacher = (req, res, next) => {
-  let r = config.get("roles").teacher;
   let teacher = {
     document: req.body.document,
     name: req.body.name,
@@ -58,22 +57,6 @@ exports.updateTeacher = (req, res, next) => {
   teacherDto.update({}, (err, data) => {
     if (err) {
       return res.status(400).json({ error: err });
-    }
-    if (req.body.oldDocument != undefined) {
-      let user = {
-        name: teacher.name,
-        lastname: teacher.lastname,
-        username: teacher.document,
-        password: helper.EncryptPassword(req.body.password),
-        role: r,
-      };
-      userDto.update({ document: req.body.oldDocument }, user, (err, u) => {
-        if (err) {
-          return res.status(400).json({ error: err });
-        }
-      });
-      notHelper.sendMS(teacher.phone);
-      return res.status(201).json({ info: data });
     }
     res.status(201).json({ info: data });
   });

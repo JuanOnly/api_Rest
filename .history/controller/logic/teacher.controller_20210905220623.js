@@ -45,6 +45,7 @@ exports.createTeacher = (req, res, next) => {
 
 exports.updateTeacher = (req, res, next) => {
   let r = config.get("roles").teacher;
+
   let teacher = {
     document: req.body.document,
     name: req.body.name,
@@ -67,7 +68,7 @@ exports.updateTeacher = (req, res, next) => {
         password: helper.EncryptPassword(req.body.password),
         role: r,
       };
-      userDto.update({ document: req.body.oldDocument }, user, (err, u) => {
+      userDto.update({ document: oldDocument }, user, (err, u) => {
         if (err) {
           return res.status(400).json({ error: err });
         }
