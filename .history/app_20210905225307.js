@@ -36,10 +36,6 @@ courseRoutes(app);
 const periodRoutes = require("./routes/period.routes");
 periodRoutes(app);
 
-// vehiculo routes loading
-const vehiculoRoutes = require("./routes/vehiculo.routes");
-vehiculoRoutes(app);
-
 app.listen(port, () => {
   console.log("server is running...");
 });

@@ -37,7 +37,7 @@ const periodRoutes = require("./routes/period.routes");
 periodRoutes(app);
 
 // vehiculo routes loading
-const vehiculoRoutes = require("./routes/vehiculo.routes");
+const periodRoutes = require("./routes/vehiculo.routes");
 vehiculoRoutes(app);
 
 app.listen(port, () => {

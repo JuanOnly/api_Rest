@@ -30,15 +30,11 @@ teacherRoutes(app);
 
 // course routes loading
 const courseRoutes = require("./routes/course.routes");
-courseRoutes(app);
+courserRoutes(app);
 
 // period routes loading
 const periodRoutes = require("./routes/period.routes");
 periodRoutes(app);
-
-// vehiculo routes loading
-const vehiculoRoutes = require("./routes/vehiculo.routes");
-vehiculoRoutes(app);
 
 app.listen(port, () => {
   console.log("server is running...");
