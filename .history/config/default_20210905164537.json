@@ -1,0 +1,10 @@
+{
+	"db-connnections":{
+		"mongodb":{
+			"host": "",
+			"user": "",
+			"password": "",
+			"dbname": ""
+		}
+	}
+}

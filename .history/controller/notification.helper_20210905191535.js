@@ -1,0 +1,4 @@
+exports.sendMS = () => {
+  let code = Math.random(10);
+  console.log("Sending sms with code");
+};
